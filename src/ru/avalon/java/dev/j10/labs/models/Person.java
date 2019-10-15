@@ -1,5 +1,8 @@
 package ru.avalon.java.dev.j10.labs.models;
 
+
+import ru.avalon.java.dev.j10.labs.commons.Address;
+
 /**
  * Представление о человеке.
  * <p>
@@ -13,6 +16,42 @@ package ru.avalon.java.dev.j10.labs.models;
  */
 public class Person {
 
+    //имя
+    private String firstName;
+
+    //второе имя
+    private String secondName;
+
+    //отчество
+    private String middleName;
+
+    //фамилия
+    private String lastName;
+
+    private Passport passport;
+    private Address address;
+
+    //конструктор без второго имени и отчества
+    public Person(String firstName, String lastName, Passport passport, Address address) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.passport = passport;
+        this.address = address;
+    }
+
+    //конструктор без второго имени
+    public Person(String firstName, String middleName, String lastName, Passport passport, Address address) {
+        this(firstName, lastName, passport, address);
+        this.middleName = middleName;
+
+    }
+
+    public Person(String firstName, String secondName, String middleName, String lastName, Passport passport, Address address) {
+        this(firstName, middleName, lastName, passport, address);
+        this.secondName = secondName;
+    }
+
+    //DONE
     /*
      * TODO(Студент): Создайте класс Address.
      *
@@ -29,6 +68,7 @@ public class Person {
      *    в классе.
      */
 
+    //DONE
     /**
      * Возврвщает полное имя человека.
      * <p>
@@ -47,12 +87,27 @@ public class Person {
      * @return имя человека в виде строки.
      */
     public String getFullName() {
+        //DONE
         /*
          * TODO(Студент): Закончить определение метода 'getFullName()' класса 'Person'
          */
-        return null;
+
+        String fullName = null;
+
+        if (secondName == null && middleName == null) {
+            fullName = firstName + " " + lastName;
+        }
+        else if (secondName != null && middleName == null) {
+            fullName = firstName + " " + secondName.charAt(0) + ". " + lastName;
+        }
+        else  if (firstName != null && middleName != null && lastName != null) {
+            fullName = firstName + " " + middleName + " " + lastName;
+        }
+
+        return fullName;
     }
 
+    //DONE
     /**
      * Возвращает адрес, по которому проживает человек.
      * <p>
@@ -62,9 +117,10 @@ public class Person {
      * @return адрес регистрации в виде строки.
      */
     public String getAddress() {
+        //DONE
         /*
          * TODO(Студент): Закончить определение метода 'getAddress()' класса 'Person'
          */
-        return null;
+        return address.toString();
     }
 }
